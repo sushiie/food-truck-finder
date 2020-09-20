@@ -1,0 +1,42 @@
+<div class="header">
+  <h1>{{ title }}</h1>
+</div>
+<div class="content">
+  <div class="left">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="18" (centerChange)="handleMapCenterChange($event)" (mapClick)="handleMapClick()">
+      <ng-container *ngFor="let item of data">
+        <agm-marker [latitude]="item.latitude" [longitude]="item.longitude"  [iconUrl]="item.facilitytype === 'Truck' ?'../assets/Images/truck-icon.png': '../assets/Images/cart-icon.png'">
+          <agm-info-window #infoWindow>
+            <span>Name: {{item.applicant}}</span><br>
+            <span>Type: {{item.facilitytype}}</span><br>
+            <span class="objId">Id: {{item.objectid}}</span>
+          </agm-info-window>
+        </agm-marker>
+      </ng-container>
+    </agm-map>
+  </div>
+  <div class="right">
+    <h2>Outlets in 500m area of Map Center</h2>
+    <perfect-scrollbar style="height: 625px;" [config]="config">
+      <ul class="item-list">
+        <li class="list-item" *ngFor="let item of data" (click)="openMarker(item)">
+          <img [src]="item.facilitytype === 'Truck' ?'../assets/Images/truck-icon.png': '../assets/Images/cart-icon.png'">
+          <span>{{item.applicant}}</span>
+        </li>
+      </ul>
+    </perfect-scrollbar>
+  </div>
+</div>
+<div class="footer">
+  <div class="detail-wrapper" *ngIf="selectedTruck">
+    Card/Truck Details:
+    <span>Name: {{selectedTruck?.applicant}}</span><br>
+    <span>Area: {{selectedTruck?.address}}</span><br>
+    <span>Full Address: {{selectedTruck?.locationdescription}}</span><br>
+    <span>Type: {{selectedTruck?.facilitytype}}</span><br>
+    <span>Menu Items: {{selectedTruck?.fooditems}}</span><br>
+  </div>
+  <div class="detail-wrapper" *ngIf="!selectedTruck">
+    <span>Please select a truck from list</span>
+  </div>
+</div>
