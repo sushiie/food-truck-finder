@@ -31,4 +31,4 @@ The Project helps you find Food Trucks in San Fransisco Area. You can pan on the
 
 The backend API used is: https://data.sfgov.org/resource/rqzj-sfat.json.
 Also it uses angular-google-maps by Sebastian Holstein (https://github.com/SebastianM/angular-google-maps)
-You can the demo at 
+You can the demo at https://food-truck-finder.herokuapp.com/
