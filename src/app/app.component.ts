@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   fetchOutlets(lat, lng) {
     if (this.rerender) {
-      const url = `https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,${lat},${lng}, 500)?$$app_token=xY0zwc2fW6P3T88nUvpt0RkGL`;
+      const url = `https://data.sfgov.org/resource/rqzj-sfat.json?$$app_token=xY0zwc2fW6P3T88nUvpt0RkGL&$where=within_circle(location,${lat},${lng}, 500)`;
       this.http.get(url).subscribe((res) => {
         this.data = res;
       });
